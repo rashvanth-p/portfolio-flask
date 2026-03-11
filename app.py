@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_mail import Mail, Message
 import datetime
+import os
 
 # ================================
 # APP INIT
@@ -26,8 +27,9 @@ app.config["MAIL_PORT"] = 587
 app.config["MAIL_USE_TLS"] = True
 app.config["MAIL_USE_SSL"] = False
 
-app.config["MAIL_USERNAME"] = "rashvanthpp18@gmail.com"
-app.config["MAIL_PASSWORD"] = "gpad jjtu ajgn syvq"
+# IMPORTANT: Read from Render environment variables
+app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
+app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
 
 # ================================
 # INIT EXTENSIONS
@@ -41,11 +43,8 @@ mail = Mail(app)
 class Contact(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
-
     name = db.Column(db.String(200), nullable=False)
-
     email = db.Column(db.String(200), nullable=False)
-
     message = db.Column(db.Text, nullable=False)
 
     created_at = db.Column(
@@ -54,7 +53,7 @@ class Contact(db.Model):
     )
 
 # ================================
-# HOME ROUTE (LOAD HTML)
+# HOME ROUTE
 # ================================
 @app.route("/")
 def home():
