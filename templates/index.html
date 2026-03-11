@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Rashvanth Portfolio</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<a href="#home" class="nav-link">Home</a> <a href="#about" class="nav-link">About</a> <a href="#skills" class="nav-link">Skills</a> <a href="#projects" class="nav-link">Projects</a> <a href="#Certifecate" class="nav-link">Certificate</a>
+
+<a href="{{ url_for('static', filename='images/RASHVANTH RESUME  (5).pdf') }}" target="_blank" class="cv-btn">
+CV
+</a>
+
+<a href="#contact" class="nav-link">Contact</a>
+
+</nav>
+
+<!-- HOME SECTION -->
+
+<div class="container1">
+
+<section id="home">
+
+<div class="f">
+
+<div class="home-img">
+
+<img src="{{ url_for('static', filename='images/WhatsApp Image 2026-03-10 at 11.45.42 AM.jpeg') }}" alt="Rashvanth">
+
+</div>
+
+<div class="home-cont">
+
+<h1>Hello, I'm Rashvanth.P</h1>
+
+<div class="auto-text">
+
+<h2>
+
+<span style="color: rgb(203,27,27)">Generative AI </span>
+
+<span class="typed-text"></span>
+
+<span class="cursor"> </span>
+
+</h2>
+
+</div>
+
+<button onclick="document.querySelector('#projects').scrollIntoView({behavior:'smooth'})">
+
+View My Work
+
+</button>
+
+<button style="margin-left:7px">
+
+<a href="{{ url_for('static', filename='images/RASHVANTH RESUME  (5).pdf') }}" target="_blank">
+CV
+</a>
+
+</button>
+
+<div class="icon">
+
+<a href="https://www.linkedin.com/in/rashvanth-p-066826373/" target="_blank">
+<i class="fa-brands fa-linkedin"></i>
+</a>
+
+<a href="https://github.com/rashvanth-p" target="_blank">
+<i class="fa-brands fa-github"></i>
+</a>
+
+<a href="#">
+<i class="fa-brands fa-instagram"></i>
+</a>
+
+<a href="#">
+<i class="fa-brands fa-facebook"></i>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<h2>About Me</h2>
+
+<p>
+I am a Generative AI and Backend Developer with strong interest in building intelligent systems that combine AI with scalable backend architectures.
+</p>
+
+<p>
+My work focuses on building AI applications using LLMs, Retrieval-Augmented Generation (RAG), and vector databases with Python frameworks like Flask.
+</p>
+
+<p>
+I'm also a creative frontend developer focused on building responsive and accessible web interfaces using HTML, CSS, JavaScript, Bootstrap and React.
+</p>
+
+</section>
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+<h2>Skills</h2>
+
+<div class="skills-container">
+
+<div class="skill-pill">Python</div>
+<div class="skill-pill">HTML</div>
+<div class="skill-pill">CSS</div>
+<div class="skill-pill">JavaScript</div>
+<div class="skill-pill">Flask</div>
+
+<div class="skill-pill">Generative AI</div>
+<div class="skill-pill">RAG</div>
+<div class="skill-pill">LLM</div>
+<div class="skill-pill">LangChain</div>
+
+<div class="skill-pill">Git / GitHub</div>
+<div class="skill-pill">Vector Databases</div>
+<div class="skill-pill">REST APIs</div>
+
+</div>
+
+</section>
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+<h2>My Projects</h2>
+
+<div class="project-grid">
+
+<div class="project">
+
+<img src="{{ url_for('static', filename='images/Screenshot 2026-03-11 114327.png') }}">
+
+<h3>AI Resume Analyzer (RAG)</h3>
+
+<p>
+AI-powered Resume Analyzer using Retrieval-Augmented Generation (RAG) and LLMs.
+</p>
+
+<a class="btn"
+href="https://rashvanth-ai-rag-project.hf.space"
+target="_blank">
+
+Live Demo
+
+</a>
+
+</div>
+
+<div class="project">
+
+<img src="{{ url_for('static', filename='images/project2.jpg') }}">
+
+<h3>Project Two</h3>
+
+<p>A short description of this project.</p>
+
+</div>
+
+<div class="project">
+
+<img src="{{ url_for('static', filename='images/project3.jpg') }}">
+
+<h3>Project Three</h3>
+
+<p>A short description of this project.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CERTIFICATES -->
+
+<section id="Certifecate">
+
+<h2>Certificates</h2>
+
+<div class="project-grid">
+
+<div class="project">
+
+<a href="{{ url_for('static', filename='images/generatic ai.jpg') }}">
+
+<img src="{{ url_for('static', filename='images/gai img.jpeg') }}">
+
+<h3>Generative AI</h3>
+<p>IBM Generative AI Certification</p>
+
+</a>
+
+</div>
+
+<div class="project">
+
+<a href="{{ url_for('static', filename='images/rinex.png') }}">
+
+<img src="{{ url_for('static', filename='images/download.jpg') }}">
+
+<h3>Internship</h3>
+<p>Rinex Artificial Intelligence Internship</p>
+
+</a>
+
+</div>
+
+<div class="project">
+
+<a href="{{ url_for('static', filename='images/nvidia.png') }}">
+
+<img src="{{ url_for('static', filename='images/nvidia img.webp') }}">
+
+<h3>NVIDIA</h3>
+<p>Fundamentals of Deep Learning</p>
+
+</a>
+
+</div>
+
+<div class="project">
+
+<a href="{{ url_for('static', filename='images/kaggle.jpg') }}">
+
+<img src="{{ url_for('static', filename='images/kaggle in.jpg') }}">
+
+<h3>Kaggle</h3>
+<p>Introduction to Machine Learning</p>
+
+</a>
+
+</div>
+
+<div class="project">
+
+<a href="{{ url_for('static', filename='images/ibm web development.png') }}">
+
+<img src="{{ url_for('static', filename='images/wb img.jpeg') }}">
+
+<h3>Web Development</h3>
+<p>IBM Certification</p>
+
+</a>
+
+</div>
+
+<div class="project">
+
+<a href="{{ url_for('static', filename='images/nptl.png') }}">
+
+<img src="{{ url_for('static', filename='images/iot img.avif') }}">
+
+<h3>NPTEL</h3>
+<p>Introduction to Internet of Things</p>
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<h2>Contact Me</h2>
+
+<form id="contact-form">
+
+<input id="name" type="text" placeholder="Your Name" required>
+
+<input id="email" type="email" placeholder="Your Email" required>
+
+<textarea id="message" placeholder="Your Message" required></textarea>
+
+<button type="submit">Send Message</button>
+
+</form>
+
+</section>
+
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+
+</body>
+
+</html>
