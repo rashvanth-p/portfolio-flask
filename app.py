@@ -9,8 +9,6 @@ import os
 # APP INIT
 # ================================
 app = Flask(__name__)
-
-# Enable CORS
 CORS(app)
 
 # ================================
@@ -27,9 +25,10 @@ app.config["MAIL_PORT"] = 587
 app.config["MAIL_USE_TLS"] = True
 app.config["MAIL_USE_SSL"] = False
 
-# IMPORTANT: Read from Render environment variables
+# Read from Railway environment variables
 app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
 app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
+app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("MAIL_USERNAME")
 
 # ================================
 # INIT EXTENSIONS
@@ -57,7 +56,7 @@ class Contact(db.Model):
 # ================================
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return "Portfolio Backend Running"
 
 # ================================
 # CONTACT FORM API
@@ -70,16 +69,16 @@ def contact():
         data = request.get_json()
 
         if not data:
-            return jsonify({"error": "No JSON data received"}), 400
+            return jsonify({"error": "No JSON received"}), 400
 
         name = data.get("name")
         email = data.get("email")
         message = data.get("message")
 
         if not name or not email or not message:
-            return jsonify({"error": "All fields are required"}), 400
+            return jsonify({"error": "All fields required"}), 400
 
-        # Save to database
+        # Save message in database
         new_message = Contact(
             name=name,
             email=email,
@@ -89,15 +88,14 @@ def contact():
         db.session.add(new_message)
         db.session.commit()
 
-        # Send email
+        # Send email notification
         msg = Message(
             subject="New Portfolio Contact Message",
-            sender=app.config["MAIL_USERNAME"],
             recipients=[app.config["MAIL_USERNAME"]]
         )
 
         msg.body = f"""
-New message from your portfolio website
+New message from your portfolio
 
 Name: {name}
 Email: {email}
@@ -106,7 +104,11 @@ Message:
 {message}
 """
 
-        mail.send(msg)
+        try:
+            mail.send(msg)
+            print("Email sent successfully")
+        except Exception as mail_error:
+            print("Email failed:", mail_error)
 
         return jsonify({
             "success": True,
@@ -115,9 +117,11 @@ Message:
 
     except Exception as e:
 
-        print("ERROR:", e)
+        print("SERVER ERROR:", e)
 
-        return jsonify({"error": str(e)}), 500
+        return jsonify({
+            "error": str(e)
+        }), 500
 
 
 # ================================
@@ -133,7 +137,6 @@ def get_messages():
         result = []
 
         for m in messages:
-
             result.append({
                 "id": m.id,
                 "name": m.name,
@@ -145,7 +148,6 @@ def get_messages():
         return jsonify(result)
 
     except Exception as e:
-
         return jsonify({"error": str(e)}), 500
 
 
@@ -159,7 +161,6 @@ def test_mail():
 
         msg = Message(
             subject="Flask Test Email",
-            sender=app.config["MAIL_USERNAME"],
             recipients=[app.config["MAIL_USERNAME"]]
         )
 
@@ -170,18 +171,19 @@ def test_mail():
         return "Test email sent successfully"
 
     except Exception as e:
-
         return str(e)
 
 
 # ================================
-# RUN SERVER
+# RUN SERVER (Railway Compatible)
 # ================================
 if __name__ == "__main__":
 
     with app.app_context():
         db.create_all()
 
-    print("Server running at http://127.0.0.1:5000")
+    port = int(os.environ.get("PORT", 5000))
 
-    app.run(debug=True)
+    print(f"Server running on port {port}")
+
+    app.run(host="0.0.0.0", port=port)
