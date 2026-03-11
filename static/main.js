@@ -1,20 +1,19 @@
 /* =================================
-   PORTFOLIO JAVASCRIPT
+PORTFOLIO JAVASCRIPT
 ================================= */
 
-
 /* =================================
-   TYPING TEXT ANIMATION
+TYPING TEXT ANIMATION
 ================================= */
 
 const typedTextSpan = document.querySelector(".typed-text");
 const cursorSpan = document.querySelector(".cursor");
 
 const textArray = [
-  "Engineer",
-  "AI Developer",
-  "Generative AI Developer",
-  "Python Developer"
+"Engineer",
+"AI Developer",
+"Generative AI Developer",
+"Python Developer"
 ];
 
 const typingDelay = 100;
@@ -25,55 +24,59 @@ let textArrayIndex = 0;
 let charIndex = 0;
 
 function type() {
-  if (charIndex < textArray[textArrayIndex].length) {
-    typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-    charIndex++;
-    setTimeout(type, typingDelay);
-  } 
-  else {
-    setTimeout(erase, newTextDelay);
-  }
+if (charIndex < textArray[textArrayIndex].length) {
+typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+charIndex++;
+setTimeout(type, typingDelay);
+}
+else {
+setTimeout(erase, newTextDelay);
+}
 }
 
 function erase() {
-  if (charIndex > 0) {
-    typedTextSpan.textContent =
-      textArray[textArrayIndex].substring(0, charIndex - 1);
+if (charIndex > 0) {
+typedTextSpan.textContent =
+textArray[textArrayIndex].substring(0, charIndex - 1);
 
-    charIndex--;
-    setTimeout(erase, erasingDelay);
-  } 
-  else {
-    textArrayIndex++;
-    if (textArrayIndex >= textArray.length) textArrayIndex = 0;
-    setTimeout(type, typingDelay + 1000);
-  }
+```
+charIndex--;
+setTimeout(erase, erasingDelay);
+```
+
+}
+else {
+textArrayIndex++;
+if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+setTimeout(type, typingDelay + 1000);
+}
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  if (textArray.length) setTimeout(type, newTextDelay + 250);
+if (textArray.length) setTimeout(type, newTextDelay + 250);
 });
 
-
 /* =================================
-   SMOOTH SCROLL NAVBAR
+SMOOTH SCROLL NAVBAR
 ================================= */
 
 document.querySelectorAll("nav a").forEach(anchor => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
+anchor.addEventListener("click", function (e) {
+e.preventDefault();
 
-    const section = document.querySelector(this.getAttribute("href"));
+```
+const section = document.querySelector(this.getAttribute("href"));
 
-    section.scrollIntoView({
-      behavior: "smooth"
-    });
-  });
+section.scrollIntoView({
+  behavior: "smooth"
+});
+```
+
+});
 });
 
-
 /* =================================
-   ACTIVE NAVBAR LINK
+ACTIVE NAVBAR LINK
 ================================= */
 
 const sections = document.querySelectorAll("section");
@@ -81,32 +84,36 @@ const navLinks = document.querySelectorAll("nav a");
 
 window.addEventListener("scroll", () => {
 
-  let current = "";
+let current = "";
 
-  sections.forEach(section => {
+sections.forEach(section => {
 
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.clientHeight;
+```
+const sectionTop = section.offsetTop;
+const sectionHeight = section.clientHeight;
 
-    if (pageYOffset >= sectionTop - 200) {
-      current = section.getAttribute("id");
-    }
-
-  });
-
-  navLinks.forEach(a => {
-    a.classList.remove("active");
-
-    if (a.getAttribute("href") === "#" + current) {
-      a.classList.add("active");
-    }
-  });
+if (pageYOffset >= sectionTop - 200) {
+  current = section.getAttribute("id");
+}
+```
 
 });
 
+navLinks.forEach(a => {
+a.classList.remove("active");
+
+```
+if (a.getAttribute("href") === "#" + current) {
+  a.classList.add("active");
+}
+```
+
+});
+
+});
 
 /* =================================
-   CONTACT FORM SUBMIT
+CONTACT FORM SUBMIT
 ================================= */
 
 const form = document.getElementById("contact-form");
@@ -115,75 +122,81 @@ if (form) {
 
 form.addEventListener("submit", async function (e) {
 
-  e.preventDefault();
+e.preventDefault();
 
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const message = document.getElementById("message").value;
+const name = document.getElementById("name").value;
+const email = document.getElementById("email").value;
+const message = document.getElementById("message").value;
 
-  try {
+try {
 
-    const response = await fetch("/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        message: message
-      })
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-
-      alert("Message sent successfully!");
-
-      form.reset();
-
-    } 
-    else {
-
-      alert(data.error || "Something went wrong");
-
-    }
-
-  } 
-  catch (error) {
-
-    alert("Server error. Please try again later.");
-
-    console.error(error);
-
+```
+const response = await fetch(
+  "https://portfolio-flask-production-ad28.up.railway.app/contact",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      message: message
+    })
   }
+);
+
+const data = await response.json();
+
+if (response.ok) {
+
+  alert("Message sent successfully!");
+  form.reset();
+
+} 
+else {
+
+  alert(data.error || "Something went wrong");
+
+}
+```
+
+}
+catch (error) {
+
+```
+alert("Server error. Please try again later.");
+console.error(error);
+```
+
+}
 
 });
 
 }
 
-
 /* =================================
-   SCROLL ANIMATION (OPTIONAL)
+SCROLL ANIMATION
 ================================= */
 
 const revealElements = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
 
-  const windowHeight = window.innerHeight;
+const windowHeight = window.innerHeight;
 
-  revealElements.forEach(el => {
+revealElements.forEach(el => {
 
-    const elementTop = el.getBoundingClientRect().top;
-    const visiblePoint = 150;
+```
+const elementTop = el.getBoundingClientRect().top;
+const visiblePoint = 150;
 
-    if (elementTop < windowHeight - visiblePoint) {
-      el.classList.add("active");
-    }
+if (elementTop < windowHeight - visiblePoint) {
+  el.classList.add("active");
+}
+```
 
-  });
+});
 
 }
 
