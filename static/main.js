@@ -8,7 +8,6 @@ TYPING TEXT ANIMATION
 ================================= */
 
 const typedTextSpan = document.querySelector(".typed-text");
-const cursorSpan = document.querySelector(".cursor");
 
 const textArray = [
 "Engineer",
@@ -34,7 +33,8 @@ charIndex++;
 
 setTimeout(type, typingDelay);
 
-} else {
+}
+else {
 
 setTimeout(erase, newTextDelay);
 
@@ -53,7 +53,8 @@ charIndex--;
 
 setTimeout(erase, erasingDelay);
 
-} else {
+}
+else {
 
 textArrayIndex++;
 
@@ -69,12 +70,11 @@ setTimeout(type, typingDelay + 1000);
 
 document.addEventListener("DOMContentLoaded", () => {
 
-if (typedTextSpan) {
+if (typedTextSpan && textArray.length) {
 setTimeout(type, newTextDelay);
 }
 
 });
-
 
 
 /* =================================
@@ -102,7 +102,6 @@ behavior: "smooth"
 });
 
 
-
 /* =================================
 ACTIVE NAVBAR LINK
 ================================= */
@@ -118,10 +117,8 @@ sections.forEach(section => {
 
 const sectionTop = section.offsetTop;
 
-if (pageYOffset >= sectionTop - 200) {
-
+if (window.scrollY >= sectionTop - 200) {
 current = section.getAttribute("id");
-
 }
 
 });
@@ -131,15 +128,12 @@ navLinks.forEach(link => {
 link.classList.remove("active");
 
 if (link.getAttribute("href") === "#" + current) {
-
 link.classList.add("active");
-
 }
 
 });
 
 });
-
 
 
 /* =================================
@@ -158,20 +152,14 @@ const name = document.getElementById("name").value.trim();
 const email = document.getElementById("email").value.trim();
 const message = document.getElementById("message").value.trim();
 
-
-/* BASIC VALIDATION */
-
 if (!name || !email || !message) {
 
 alert("Please fill all fields");
-
 return;
 
 }
 
 try {
-
-/* CHANGE THIS URL IF RUNNING LOCALLY */
 
 const response = await fetch("/contact", {
 
@@ -181,6 +169,8 @@ headers: {
 "Content-Type": "application/json"
 },
 
+cache: "no-cache",
+
 body: JSON.stringify({
 name: name,
 email: email,
@@ -189,22 +179,22 @@ message: message
 
 });
 
-
 const data = await response.json();
 
 if (response.ok) {
 
 alert("Message sent successfully!");
-
 form.reset();
 
-} else {
+}
+else {
 
 alert(data.error || "Something went wrong");
 
 }
 
-} catch (error) {
+}
+catch (error) {
 
 console.error(error);
 
@@ -215,7 +205,6 @@ alert("Server error. Please try again later.");
 });
 
 }
-
 
 
 /* =================================
@@ -235,9 +224,7 @@ const elementTop = el.getBoundingClientRect().top;
 const visiblePoint = 150;
 
 if (elementTop < windowHeight - visiblePoint) {
-
 el.classList.add("active");
-
 }
 
 });
@@ -245,7 +232,5 @@ el.classList.add("active");
 }
 
 window.addEventListener("scroll", revealOnScroll);
-
-/* trigger once on load */
 
 revealOnScroll();
