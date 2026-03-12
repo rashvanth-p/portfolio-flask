@@ -2,6 +2,7 @@
 PORTFOLIO JAVASCRIPT
 ================================= */
 
+
 /* =================================
 TYPING TEXT ANIMATION
 ================================= */
@@ -24,56 +25,83 @@ let textArrayIndex = 0;
 let charIndex = 0;
 
 function type() {
+
 if (charIndex < textArray[textArrayIndex].length) {
+
 typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+
 charIndex++;
+
 setTimeout(type, typingDelay);
-}
-else {
+
+} else {
+
 setTimeout(erase, newTextDelay);
+
 }
+
 }
 
 function erase() {
+
 if (charIndex > 0) {
+
 typedTextSpan.textContent =
 textArray[textArrayIndex].substring(0, charIndex - 1);
 
-```
 charIndex--;
+
 setTimeout(erase, erasingDelay);
-```
 
-}
-else {
+} else {
+
 textArrayIndex++;
-if (textArrayIndex >= textArray.length) textArrayIndex = 0;
-setTimeout(type, typingDelay + 1000);
-}
+
+if (textArrayIndex >= textArray.length) {
+textArrayIndex = 0;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-if (textArray.length) setTimeout(type, newTextDelay + 250);
+setTimeout(type, typingDelay + 1000);
+
+}
+
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+if (typedTextSpan) {
+setTimeout(type, newTextDelay);
+}
+
 });
+
+
 
 /* =================================
 SMOOTH SCROLL NAVBAR
 ================================= */
 
-document.querySelectorAll("nav a").forEach(anchor => {
+document.querySelectorAll("nav a[href^='#']").forEach(anchor => {
+
 anchor.addEventListener("click", function (e) {
+
 e.preventDefault();
 
-```
 const section = document.querySelector(this.getAttribute("href"));
 
+if (section) {
+
 section.scrollIntoView({
-  behavior: "smooth"
+behavior: "smooth"
 });
-```
+
+}
 
 });
+
 });
+
+
 
 /* =================================
 ACTIVE NAVBAR LINK
@@ -88,29 +116,31 @@ let current = "";
 
 sections.forEach(section => {
 
-```
 const sectionTop = section.offsetTop;
-const sectionHeight = section.clientHeight;
 
 if (pageYOffset >= sectionTop - 200) {
-  current = section.getAttribute("id");
+
+current = section.getAttribute("id");
+
 }
-```
 
 });
 
-navLinks.forEach(a => {
-a.classList.remove("active");
+navLinks.forEach(link => {
 
-```
-if (a.getAttribute("href") === "#" + current) {
-  a.classList.add("active");
+link.classList.remove("active");
+
+if (link.getAttribute("href") === "#" + current) {
+
+link.classList.add("active");
+
 }
-```
 
 });
 
 });
+
+
 
 /* =================================
 CONTACT FORM SUBMIT
@@ -124,50 +154,61 @@ form.addEventListener("submit", async function (e) {
 
 e.preventDefault();
 
-const name = document.getElementById("name").value;
-const email = document.getElementById("email").value;
-const message = document.getElementById("message").value;
+const name = document.getElementById("name").value.trim();
+const email = document.getElementById("email").value.trim();
+const message = document.getElementById("message").value.trim();
+
+
+/* BASIC VALIDATION */
+
+if (!name || !email || !message) {
+
+alert("Please fill all fields");
+
+return;
+
+}
 
 try {
 
-```
-const response = await fetch(
-  "https://portfolio-flask-production-ad28.up.railway.app/contact",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      name: name,
-      email: email,
-      message: message
-    })
-  }
-);
+/* CHANGE THIS URL IF RUNNING LOCALLY */
+
+const response = await fetch("/contact", {
+
+method: "POST",
+
+headers: {
+"Content-Type": "application/json"
+},
+
+body: JSON.stringify({
+name: name,
+email: email,
+message: message
+})
+
+});
+
 
 const data = await response.json();
 
 if (response.ok) {
 
-  alert("Message sent successfully!");
-  form.reset();
+alert("Message sent successfully!");
 
-} 
-else {
+form.reset();
 
-  alert(data.error || "Something went wrong");
+} else {
 
-}
-```
+alert(data.error || "Something went wrong");
 
 }
-catch (error) {
 
-```
-alert("Server error. Please try again later.");
+} catch (error) {
+
 console.error(error);
-```
+
+alert("Server error. Please try again later.");
 
 }
 
@@ -175,8 +216,10 @@ console.error(error);
 
 }
 
+
+
 /* =================================
-SCROLL ANIMATION
+SCROLL REVEAL ANIMATION
 ================================= */
 
 const revealElements = document.querySelectorAll(".reveal");
@@ -187,17 +230,22 @@ const windowHeight = window.innerHeight;
 
 revealElements.forEach(el => {
 
-```
 const elementTop = el.getBoundingClientRect().top;
+
 const visiblePoint = 150;
 
 if (elementTop < windowHeight - visiblePoint) {
-  el.classList.add("active");
+
+el.classList.add("active");
+
 }
-```
 
 });
 
 }
 
 window.addEventListener("scroll", revealOnScroll);
+
+/* trigger once on load */
+
+revealOnScroll();
