@@ -29,13 +29,11 @@ if (!typedTextSpan) return;
 if (charIndex < textArray[textArrayIndex].length) {
 
 typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-
 charIndex++;
 
 setTimeout(type, typingDelay);
 
-}
-else {
+} else {
 
 setTimeout(erase, newTextDelay);
 
@@ -56,8 +54,7 @@ charIndex--;
 
 setTimeout(erase, erasingDelay);
 
-}
-else {
+} else {
 
 textArrayIndex++;
 
@@ -78,6 +75,7 @@ setTimeout(type, newTextDelay);
 }
 
 });
+
 
 /* =================================
 SMOOTH SCROLL NAVBAR
@@ -102,6 +100,7 @@ behavior: "smooth"
 });
 
 });
+
 
 /* =================================
 ACTIVE NAVBAR LINK
@@ -135,6 +134,8 @@ link.classList.add("active");
 });
 
 });
+
+
 /* =================================
 CONTACT FORM → WHATSAPP
 ================================= */
@@ -152,15 +153,14 @@ const email = document.getElementById("email").value.trim();
 const message = document.getElementById("message").value.trim();
 
 if (!name || !email || !message) {
-
 alert("Please fill all fields");
 return;
-
 }
 
 /* YOUR WHATSAPP NUMBER (WITH COUNTRY CODE) */
-const phone = "91+6374969418";
+const phone = "916374969418";
 
+/* MESSAGE TEXT */
 const text =
 `New Portfolio Contact
 
@@ -170,6 +170,7 @@ Email: ${email}
 Message:
 ${message}`;
 
+/* WHATSAPP URL */
 const whatsappURL =
 `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
 
@@ -180,6 +181,8 @@ form.reset();
 });
 
 }
+
+
 /* =================================
 SCROLL REVEAL ANIMATION
 ================================= */
@@ -193,7 +196,6 @@ const windowHeight = window.innerHeight;
 revealElements.forEach(el => {
 
 const elementTop = el.getBoundingClientRect().top;
-
 const visiblePoint = 150;
 
 if (elementTop < windowHeight - visiblePoint) {
