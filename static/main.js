@@ -135,7 +135,6 @@ link.classList.add("active");
 });
 
 });
-
 /* =================================
 CONTACT FORM → WHATSAPP
 ================================= */
@@ -159,10 +158,9 @@ return;
 
 }
 
-/* CHANGE TO YOUR WHATSAPP NUMBER */
-const phone = "6374969418";
+/* YOUR WHATSAPP NUMBER (WITH COUNTRY CODE) */
+const phone = "916374969418";
 
-/* MESSAGE FORMAT */
 const text =
 `New Portfolio Contact
 
@@ -172,7 +170,6 @@ Email: ${email}
 Message:
 ${message}`;
 
-/* OPEN WHATSAPP */
 const whatsappURL =
 `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
 
@@ -183,7 +180,6 @@ form.reset();
 });
 
 }
-
 /* =================================
 SCROLL REVEAL ANIMATION
 ================================= */
