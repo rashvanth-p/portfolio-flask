@@ -26,11 +26,12 @@ app.config["MAIL_PORT"] = 587
 app.config["MAIL_USE_TLS"] = True
 
 # CHANGE THESE
-app.config["MAIL_USERNAME"] = "rashvanthpp18@gmail.com"
-app.config["MAIL_PASSWORD"] = "rmjovfszaakuqfuq"
+import os
 
-app.config["MAIL_DEFAULT_SENDER"] = "rashvanthpp18@gmail.com"
+app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
+app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
 
+app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("MAIL_USERNAME")
 
 # ==============================
 # INIT EXTENSIONS
