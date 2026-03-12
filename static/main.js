@@ -159,7 +159,7 @@ return;
 }
 
 /* YOUR WHATSAPP NUMBER (WITH COUNTRY CODE) */
-const phone = "916374969418";
+const phone = "91+6374969418";
 
 const text =
 `New Portfolio Contact
