@@ -2,7 +2,6 @@
 PORTFOLIO JAVASCRIPT
 ================================= */
 
-
 /* =================================
 TYPING TEXT ANIMATION
 ================================= */
@@ -25,6 +24,8 @@ let charIndex = 0;
 
 function type() {
 
+if (!typedTextSpan) return;
+
 if (charIndex < textArray[textArrayIndex].length) {
 
 typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
@@ -43,6 +44,8 @@ setTimeout(erase, newTextDelay);
 }
 
 function erase() {
+
+if (!typedTextSpan) return;
 
 if (charIndex > 0) {
 
@@ -76,7 +79,6 @@ setTimeout(type, newTextDelay);
 
 });
 
-
 /* =================================
 SMOOTH SCROLL NAVBAR
 ================================= */
@@ -100,7 +102,6 @@ behavior: "smooth"
 });
 
 });
-
 
 /* =================================
 ACTIVE NAVBAR LINK
@@ -135,16 +136,15 @@ link.classList.add("active");
 
 });
 
-
 /* =================================
-CONTACT FORM SUBMIT
+CONTACT FORM → WHATSAPP
 ================================= */
 
 const form = document.getElementById("contact-form");
 
 if (form) {
 
-form.addEventListener("submit", async function (e) {
+form.addEventListener("submit", function (e) {
 
 e.preventDefault();
 
@@ -159,53 +159,30 @@ return;
 
 }
 
-try {
+/* CHANGE TO YOUR WHATSAPP NUMBER */
+const phone = "6374969418";
 
-const response = await fetch("/contact", {
+/* MESSAGE FORMAT */
+const text =
+`New Portfolio Contact
 
-method: "POST",
+Name: ${name}
+Email: ${email}
 
-headers: {
-"Content-Type": "application/json"
-},
+Message:
+${message}`;
 
-cache: "no-cache",
+/* OPEN WHATSAPP */
+const whatsappURL =
+`https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
 
-body: JSON.stringify({
-name: name,
-email: email,
-message: message
-})
+window.open(whatsappURL, "_blank");
 
-});
-
-const data = await response.json();
-
-if (response.ok) {
-
-alert("Message sent successfully!");
 form.reset();
 
-}
-else {
-
-alert(data.error || "Something went wrong");
-
-}
-
-}
-catch (error) {
-
-console.error(error);
-
-alert("Server error. Please try again later.");
-
-}
-
 });
 
 }
-
 
 /* =================================
 SCROLL REVEAL ANIMATION
