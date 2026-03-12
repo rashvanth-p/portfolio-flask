@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rashvanth Portfolio</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#home" class="nav-link">Home</a>
+  <a href="#about" class="nav-link">About</a>
+  <a href="#skills" class="nav-link">Skills</a>
+  <a href="#projects" class="nav-link">Projects</a>
+  <a href="#certificates" class="nav-link">Certificates</a>
+  <a href="images/resume.pdf" target="_blank" class="cv-btn">CV</a>
+  <a href="#contact" class="nav-link">Contact</a>
+</nav>
+
+<!-- HOME -->
+<section id="home">
+  <div class="home-container">
+    <div class="home-img">
+      <img src="images/profile.jpg" alt="Rashvanth">
+    </div>
+    <div class="home-content">
+      <h1>Hello, I'm Rashvanth P</h1>
+      <div class="auto-text">
+        <h2>
+          <span style="color:#cb1b1b">Generative AI </span>
+          <span class="typed-text"></span>
+          <span class="cursor"></span>
+        </h2>
+      </div>
+      <button onclick="document.querySelector('#projects').scrollIntoView({behavior:'smooth'})">View My Work</button>
+      <a href="images/resume.pdf" target="_blank"><button>Download CV</button></a>
+      <div class="icon">
+        <a href="https://www.linkedin.com/in/rashvanth-p-066826373/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://github.com/rashvanth-p" target="_blank"><i class="fa-brands fa-github"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2>About Me</h2>
+  <p>I am a Generative AI and Backend Developer focused on building intelligent systems using LLMs and scalable backend architectures.</p>
+  <p>My work includes building AI applications using RAG pipelines, vector databases, and Python frameworks like Flask.</p>
+  <p>I also build modern web interfaces using HTML, CSS, JavaScript, and React.</p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills-container">
+    <div class="skill-pill">Python</div>
+    <div class="skill-pill">HTML</div>
+    <div class="skill-pill">CSS</div>
+    <div class="skill-pill">JavaScript</div>
+    <div class="skill-pill">Flask</div>
+    <div class="skill-pill">Generative AI</div>
+    <div class="skill-pill">RAG</div>
+    <div class="skill-pill">LLM</div>
+    <div class="skill-pill">LangChain</div>
+    <div class="skill-pill">Git / GitHub</div>
+    <div class="skill-pill">Vector Databases</div>
+    <div class="skill-pill">REST APIs</div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="project-grid">
+    <div class="project">
+      <img src="images/project1.png">
+      <h3>AI Resume Analyzer (RAG)</h3>
+      <p>AI Resume Analyzer using Retrieval-Augmented Generation and LLMs.</p>
+      <a class="btn" href="https://rashvanth-ai-rag-project.hf.space" target="_blank">Live Demo</a>
+    </div>
+    <div class="project">
+      <img src="images/project2.jpg">
+      <h3>Project Two</h3>
+      <p>Project description here.</p>
+    </div>
+    <div class="project">
+      <img src="images/project3.jpg">
+      <h3>Project Three</h3>
+      <p>Project description here.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certificates">
+  <h2>Certificates</h2>
+  <div class="project-grid">
+    <div class="project">
+      <a href="images/generative-ai.jpg">
+        <img src="images/gai-preview.jpg">
+        <h3>IBM Generative AI</h3>
+        <p>Generative AI Certification</p>
+      </a>
+    </div>
+    <div class="project">
+      <a href="images/rinex.png">
+        <img src="images/rinex-preview.jpg">
+        <h3>AI Internship</h3>
+        <p>Rinex Artificial Intelligence Internship</p>
+      </a>
+    </div>
+    <div class="project">
+      <a href="images/nvidia.png">
+        <img src="images/nvidia-preview.jpg">
+        <h3>NVIDIA</h3>
+        <p>Fundamentals of Deep Learning</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact Me</h2>
+  <form id="contact-form">
+    <input id="name" type="text" placeholder="Your Name" required>
+    <input id="email" type="email" placeholder="Your Email" required>
+    <textarea id="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<script src="js/script.js"></script>
+</body>
+</html>
